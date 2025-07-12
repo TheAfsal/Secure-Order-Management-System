@@ -1,9 +1,25 @@
-import mongoose from "mongoose";
+import mysql from "mysql2/promise";
 
-export const connectDatabase = () => {
-  mongoose.connect(process.env.MONGODB_URL, {
-    dbName: "Matching_Order", // MongoDB database name
-  })
-    .then(() => console.log("Matching_Order solution database connected."))
-    .catch((error) => console.error("Error connecting to MongoDB:", error));
-};
+const pool = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DB,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+
+async function testConnection() {
+  try {
+    const connection = await pool.getConnection();
+    await connection.ping();
+    console.log("Database connection successful");
+    connection.release();
+  } catch (error) {
+    console.error("Database connection failed:", error.message);
+    process.exit(1);
+  }
+}
+
+export { pool, testConnection };

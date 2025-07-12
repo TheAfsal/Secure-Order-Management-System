@@ -1,6 +1,6 @@
-import CompletedOrder from "../models/completedOrder.js";
-import BuyerOrder from "../models/buyerOrder.js";
-import SellerOrder from "../models/sellerOrder.js";
+// import CompletedOrder from "../models/completedOrder.js";
+// import BuyerOrder from "../models/buyerOrder.js";
+// import SellerOrder from "../models/sellerOrder.js";
 
 // get all buyer
 export const getAllBuyerOrders = async (req, res) => {

@@ -3,7 +3,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import logger from "winston";
 
-import orderRouter from "./routes/orderRoutes.js";
+import orderRouter from "./src/routes/orderRoutes.js";
+import errorHandler from "./src/middleware/errorHandler.js";
 
 const app = express();
 
@@ -34,5 +35,7 @@ logger.configure({
 
 // Routes
 app.use("/orders", orderRouter);
+
+app.use(errorHandler);
 
 export { app, logger };

@@ -1,6 +1,6 @@
 backend/node_modules
-backend/config/.env
-backend/keys/
+backend/src/config/.env
+backend/src/keys/
 
 my-app/node_modules
 my-app/.env

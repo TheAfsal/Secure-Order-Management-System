@@ -1,6 +1,6 @@
-const logger = require("winston");
+import logger from "winston"
 
-module.exports = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
   logger.error("Global error", {
     error: err.message,
     stack: err.stack,
@@ -14,3 +14,5 @@ module.exports = (err, req, res, next) => {
     error: process.env.NODE_ENV === "development" ? err.message : undefined,
   });
 };
+
+export default errorHandler

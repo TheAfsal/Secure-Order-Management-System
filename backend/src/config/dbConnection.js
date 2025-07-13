@@ -1,15 +1,18 @@
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
-dotenv.config({ path: "./config/.env" });
+dotenv.config({ path: "./src/config/.env" });
+
+console.log(process.env.MYSQL_DB);
+
 
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
+  port: Number(process.env.MYSQL_PORT),
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DB,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0,
 });
 
 async function testConnection() {

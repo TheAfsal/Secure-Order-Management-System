@@ -3,14 +3,12 @@ import fs from "fs";
 import { execSync } from "child_process";
 import logger from "winston";
 
-const privateKey = new NodeRSA(fs.readFileSync("./keys/private.pem"));
+const privateKey = new NodeRSA(process.env.PRIVATE_KEY);
 
 const decryptMiddleware = (req, res, next) => {
   try {
     const encryptedData = req.body.encrypted;
 
-    console.log("@@encryptedData: ",encryptedData);
-    
     if (!encryptedData) {
       return res.status(400).json({ error: "No encrypted data provided" });
     }

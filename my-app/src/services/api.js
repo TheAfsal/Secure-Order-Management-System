@@ -1,13 +1,13 @@
 import axios from "axios";
 import NodeRSA from "node-rsa";
-import publicKeyPem from "../assets/public.pem";
 
 const key = new NodeRSA();
-key.importKey(publicKeyPem);
+const publicKey = process.env.REACT_APP_PUBLIC_KEY?.replace(/\\n/g, '\n');
+key.importKey(publicKey);
+
 
 const api = axios.create({
-  // baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000',
-  baseURL: "http://localhost:4000",
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:4000',
   withCredentials: true,
 });
 

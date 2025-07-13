@@ -3,5 +3,4 @@ backend/config/.env
 backend/keys/
 
 my-app/node_modules
-my-app/src/config/.env
-my-app/src/assets
+my-app/.env

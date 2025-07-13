@@ -12,3 +12,31 @@
 {"level":"info","message":"Server running on port 4000"}
 {"level":"info","message":"Server running on port 4000"}
 {"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"error":"Table 'trading_db.completed_orders' doesn't exist","level":"error","message":"Error fetching completed orders"}
+{"error":"Table 'trading_db.completed_orders' doesn't exist","level":"error","message":"Error fetching completed orders"}
+{"error":"Table 'trading_db.completed_orders' doesn't exist","level":"error","message":"Error fetching completed orders"}
+{"error":"Table 'trading_db.completed_orders' doesn't exist","level":"error","message":"Error fetching completed orders"}
+{"error":"Table 'trading_db.completed_orders' doesn't exist","level":"error","message":"Error fetching completed orders"}
+{"error":"Table 'trading_db.completed_orders' doesn't exist","level":"error","message":"Error fetching completed orders"}
+{"error":"Table 'trading_db.completed_orders' doesn't exist","level":"error","message":"Error fetching completed orders"}
+{"error":"Table 'trading_db.completed_orders' doesn't exist","level":"error","message":"Error fetching completed orders"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Decryption successful using NodeRSA","timestamp":"2025-07-13T19:24:35.955Z"}
+{"buyer_price":100,"buyer_qty":20,"level":"info","message":"Buyer order placed successfully"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Decryption successful using NodeRSA","timestamp":"2025-07-13T19:26:39.031Z"}
+{"level":"info","message":"Seller order placed successfully","seller_price":102,"seller_qty":30}
+{"level":"info","message":"Decryption successful using NodeRSA","timestamp":"2025-07-13T19:26:51.318Z"}
+{"level":"info","message":"Seller order placed successfully","seller_price":200,"seller_qty":20}
+{"level":"info","message":"Decryption successful using NodeRSA","timestamp":"2025-07-13T19:27:08.171Z"}
+{"buyer_price":102,"buyer_qty":30,"level":"info","message":"Buyer order placed successfully"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Decryption successful using NodeRSA","timestamp":"2025-07-13T19:42:23.641Z"}
+{"buyer_price":103,"buyer_qty":10,"level":"info","message":"Buyer order placed successfully"}

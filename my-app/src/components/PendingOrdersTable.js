@@ -1,36 +1,35 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import config from "../config/config";
-import Loader from "./Loader"; // Import Loader component
-
+import {
+  getAllBuyerOrders,
+  getAllSellerOrders,
+} from "../services/orderService";
+import Loader from "./Loader";
 
 const PendingOrdersTable = () => {
   const [pendingBuyer, setPendingBuyer] = useState([]);
   const [pendingSeller, setPendingSeller] = useState([]);
-  const [loading, setLoading] = useState(true); 
-
-  useEffect(() => {
-    fetchOrders();
-
-    // Set interval to fetch orders every 5 seconds 
-    const interval = setInterval(fetchOrders, 5000);
-
-    // Cleanup function to clear interval when component unmounts
-    return () => clearInterval(interval);
-  }, []);
+  const [loading, setLoading] = useState(true);
 
   const fetchOrders = async () => {
     try {
-      const pendingBuyersResponse = await axios.get(`${config.apiUrl}/orders/getAllBuyer`);
-      const pendingSellersResponse = await axios.get(`${config.apiUrl}/orders/getAllSeller`);
-      
-      setPendingBuyer(pendingBuyersResponse.data);
-      setPendingSeller(pendingSellersResponse.data);
+      const [buyers, sellers] = await Promise.all([
+        getAllBuyerOrders(),
+        getAllSellerOrders(),
+      ]);
+      setPendingBuyer(buyers);
+      setPendingSeller(sellers);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching pending orders:", error);
+      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchOrders();
+    const interval = setInterval(fetchOrders, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
@@ -46,7 +45,7 @@ const PendingOrdersTable = () => {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Buyer Qty
+                    Buyer Quantity
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Buyer Price
@@ -55,30 +54,29 @@ const PendingOrdersTable = () => {
                     Seller Price
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Seller Qty
+                    Seller Quantity
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {pendingBuyer.map((buyerOrder, index) => {
-                  const correspondingSellerOrder = pendingSeller[index] || {}; 
-  
+                  const sellerOrder = pendingSeller[index] || {};
                   return (
                     <tr
-                      key={index}
+                      key={buyerOrder.id}
                       className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {buyerOrder.buyer_qty || "-"}
+                        {buyerOrder.quantity || "-"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {buyerOrder.buyer_price || "-"}
+                        {buyerOrder.price || "-"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {correspondingSellerOrder.seller_price || "-"}
+                        {sellerOrder.price || "-"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {correspondingSellerOrder.seller_qty || "-"}
+                        {sellerOrder.quantity || "-"}
                       </td>
                     </tr>
                   );
@@ -87,16 +85,16 @@ const PendingOrdersTable = () => {
                   .slice(pendingBuyer.length)
                   .map((sellerOrder, index) => (
                     <tr
-                      key={pendingBuyer.length + index}
+                      key={sellerOrder.id}
                       className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                     >
                       <td className="px-6 py-4 whitespace-nowrap">-</td>
                       <td className="px-6 py-4 whitespace-nowrap">-</td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {sellerOrder.seller_price || "-"}
+                        {sellerOrder.price || "-"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {sellerOrder.seller_qty || "-"}
+                        {sellerOrder.quantity || "-"}
                       </td>
                     </tr>
                   ))}

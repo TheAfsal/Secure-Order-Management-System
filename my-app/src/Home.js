@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-
 import PendingOrdersTable from "./components/PendingOrdersTable";
-
 import NewOrderForm from "./components/NewOrderForm";
-
 import CompletedOrdersTable from "./components/CompletedOrdersTable";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pendingOrders, setPendingOrders] = useState({ buyers: [], sellers: [] });
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -15,6 +13,11 @@ const Home = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const updatePendingOrders = () => {
+    // Trigger a refresh of pending orders in PendingOrdersTable
+    setPendingOrders({ ...pendingOrders }); // Force re-render
   };
 
   return (
@@ -33,14 +36,18 @@ const Home = () => {
         <NewOrderForm
           closeModal={closeModal}
           isOpen={isModalOpen}
-          className="mb-8"
+          updatePendingOrders={updatePendingOrders}
         />
       )}
-      <div className="flex flex-col justify-between">
-        <h2 className="text-2xl font-bold mb-4">Pending Orders</h2>
-        <PendingOrdersTable className="mb-8" />
-        <h2 className="text-2xl font-bold mb-4">Complete Orders</h2>
-        <CompletedOrdersTable />
+      <div className="flex flex-col space-y-8">
+        <div>
+          <h2 className="text-2xl font-bold mb-4">Pending Orders</h2>
+          <PendingOrdersTable />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold mb-4">Completed Orders</h2>
+          <CompletedOrdersTable />
+        </div>
       </div>
     </div>
   );

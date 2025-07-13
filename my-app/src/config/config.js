@@ -1,6 +1,5 @@
 const config = {
-  // apiUrl: 'https://matching-order-smyn.onrender.com' || 'http://localhost:4000/api/v1',
-  apiUrl: 'http://localhost:4000',
-  };
-  
-  export default config;
+  apiUrl: import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000',
+};
+
+export default config;

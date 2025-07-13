@@ -8,6 +8,9 @@ const privateKey = new NodeRSA(fs.readFileSync("./keys/private.pem"));
 const decryptMiddleware = (req, res, next) => {
   try {
     const encryptedData = req.body.encrypted;
+
+    console.log("@@encryptedData: ",encryptedData);
+    
     if (!encryptedData) {
       return res.status(400).json({ error: "No encrypted data provided" });
     }

@@ -1,1 +1,14 @@
 {"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"error":"Access denied for user ''@'172.23.0.1' (using password: NO)","level":"error","message":"Error fetching buyer orders"}
+{"error":"Access denied for user ''@'172.23.0.1' (using password: NO)","level":"error","message":"Error fetching completed orders"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"error":"Table 'trading_db.completed_orders' doesn't exist","level":"error","message":"Error fetching completed orders"}
+{"error":"Table 'trading_db.pending_orders' doesn't exist","level":"error","message":"Error fetching buyer orders"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}
+{"level":"info","message":"Server running on port 4000"}

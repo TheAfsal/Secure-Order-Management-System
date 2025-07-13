@@ -1,18 +1,11 @@
 import express from "express";
-import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import logger from "winston";
 
-import completedOrders from "./routes/completedOrders.js";
-import buyerRouter from "./routes/buyerRoutes.js";
-import sellerRouter from "./routes/sellerRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
 
 const app = express();
-
-dotenv.config({
-  path: "./config/.env",
-});
 
 // Middleware
 app.use(express.json());
@@ -40,9 +33,6 @@ logger.configure({
 });
 
 // Routes
-app.use("/orders", buyerRouter);
-app.use("/orders", sellerRouter);
-
-app.use("/orders", completedOrders);
+app.use("/orders", orderRouter);
 
 export { app, logger };

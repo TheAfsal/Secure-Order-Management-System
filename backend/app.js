@@ -36,6 +36,7 @@ logger.configure({
 // Routes
 app.use("/orders", orderRouter);
 
+// Global Error Handler
 app.use(errorHandler);
 
 export { app, logger };

@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             OrderMatchingMobileTheme {
-                WebViewPage("https://hirearena.vercel.app")
+                WebViewPage("https://secure-order-management-system.vercel.app")
             }
         }
     }
